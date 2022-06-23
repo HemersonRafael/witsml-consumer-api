@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "witsml-consumer-rest-api"
+version = "0.1.0"
+description = "This REST API consumes data from a WITSML storage."
+authors = ["hemersonrafael <rafaelpontes1995@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+fastapi = {extras = ["all"], version = "^0.78.0"}
+komle-plus = "^0.3.1"
+gunicorn = "^20.1.0"
+
+[tool.poetry.dev-dependencies]
+uvicorn = "^0.17.6"
+blue = "^0.9.0"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
