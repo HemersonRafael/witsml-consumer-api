@@ -1,7 +1,8 @@
-import json
+# -*- coding: utf-8 -*-
+"""Implementation of the log routers."""
 from typing import Any
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 
 from witsml_consumer_rest_api import crud, schemas
 

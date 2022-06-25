@@ -1,14 +1,25 @@
+# -*- coding: utf-8 -*-
+"""Implementation of the base schema."""
+from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, Field, root_validator, validator
+from pydantic import BaseModel, Field, validator
 
 
 class Base(BaseModel):
     returnElements: str = Field(
         default='requested', description='Return Elements'
     )
-    uid: Optional[str] = Field(exemplo='w-42', description='uid')
-    name: Optional[str] = Field(exemplo='A-42', description='name')
+    uid: Optional[str] = Field(exempla='w-42', description='IDentifier.')
+    name: Optional[str] = Field(exempla='A-42', description='Name.')
+    dTimCreation: Optional[datetime] = Field(
+        exempla='2022-04-22T05:47:54.284Z',
+        description='Date Time Creation.',
+    )
+    dTimLastChange: Optional[datetime] = Field(
+        exempla='2022-04-22T05:47:54.284Z',
+        description='Date Time Last Change.',
+    )
 
     @validator('returnElements')
     def return_elements_match(cls, option):

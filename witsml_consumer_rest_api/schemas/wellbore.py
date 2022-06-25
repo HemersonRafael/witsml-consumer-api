@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+"""Implementation of the wellbore schema."""
+from datetime import datetime
 from typing import Optional
 
 from pydantic import Field, validator
@@ -6,40 +9,48 @@ from witsml_consumer_rest_api.schemas import Base
 
 
 class Wellbore(Base):
-    uidWell: Optional[str] = Field(exemplo='6507/7-A-42', description='')
+    uidWell: Optional[str] = Field(
+        example='6507/7-A-42', description='Well IDentifier.'
+    )
     nameWell: Optional[str] = Field(
-        exemplo='6507/7-A-42', description='Name Well.'
+        example='6507/7-A-42', description='Name Well.'
     )
     number: Optional[str] = Field(
-        exemplo='1234-0987', description='Operator borehole number.'
+        example='1234-0987', description='Operator borehole number.'
     )
     statusWellbore: Optional[str] = Field(
-        exemplo='active', description='POSC wellbore status.'
+        example='active', description='POSC wellbore status.'
     )
     isActive: Optional[bool] = Field(
-        exemplo=True,
-        description='True (="1" or "true") indicates that the wellbore is active.\
-         False (="0" or "false") indicates otherwise. It is the servers responsibility \
-        to set this value based on its available internal data (e.g., what objects are changing)',
+        example=True,
+        description="""
+            True (="1" or "true") indicates that the wellbore is active.
+            False (="0" or "false") indicates otherwise. It is the servers
+            responsibility to set this value based on its available internal
+            data (e.g., what objects are changing).
+        """,
     )
     purposeWellbore: Optional[str] = Field(
-        exemplo='exploration', description='POSC wellbore purpose'
+        example='exploration', description='POSC wellbore purpose.'
     )
     typeWellbore: Optional[str] = Field(
-        exemplo='initial', description='type of wellbore.'
+        example='initial', description='type of wellbore.'
     )
     shape: Optional[str] = Field(
-        exemplo='horizontal', description='POSC wellbore trajectory shape.'
+        example='horizontal', description='POSC wellbore trajectory shape.'
     )
-    dTimKickoff: Optional[str] = Field(
-        exemplo='2001-03-15T13:20:00.000Z',
-        description='Date and time of wellbore kickoff',
+    dTimKickoff: Optional[datetime] = Field(
+        example='2001-03-15T13:20:00.000Z',
+        description='Date and time of wellbore kickoff.',
     )
     achievedTD: Optional[bool] = Field(
-        exemplo=False,
-        description='True ("true" of "1") indicates that the wellbore has acheieved total depth.\
-             That is, drilling has completed. False ("false" or "0") indicates otherwise. Not \
-             given indicates that it is not known whether total depth has been reached.',
+        example=False,
+        description="""
+            True ("true" of "1") indicates that the wellbore has acheieved 
+            total depth. That is, drilling has completed. False 
+            ("false" or "0") indicates otherwise. Not given indicates that
+            it is not known whether total depth has been reached.
+        """,
     )
 
     @validator('statusWellbore')
@@ -63,7 +74,7 @@ class Wellbore(Base):
             'working over',
             'unknown',
         ]
-        if not wellbore_status in wellbore_states:
+        if wellbore_status not in wellbore_states:
             raise ValueError(
                 f'statusWellbore must be in {str(wellbore_states)}!'
             )
@@ -99,7 +110,7 @@ class Wellbore(Base):
             'mineral',
             'unknown',
         ]
-        if not purpose_wellbore in purposes_wellbore:
+        if purpose_wellbore not in purposes_wellbore:
             raise ValueError(
                 f'purposeWellbore must be in {str(purposes_wellbore)}!'
             )
@@ -117,7 +128,7 @@ class Wellbore(Base):
             'sidetrack',
             'unknown',
         ]
-        if not type_welbore in types_welbore:
+        if type_welbore not in types_welbore:
             raise ValueError(f'typeWellbore must be in {str(types_welbore)}!')
 
         return type_welbore
@@ -133,7 +144,7 @@ class Wellbore(Base):
             'vertical',
             'unknown',
         ]
-        if not shape in shapes:
+        if shape not in shapes:
             raise ValueError(f'shape must be in {str(shapes)}!')
 
         return shape

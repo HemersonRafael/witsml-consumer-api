@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+"""Implementation of the well CRUD."""
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import HTTPException
 from komle import utils as ku

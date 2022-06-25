@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
+"""Implementation of the well routers."""
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter
 
 from witsml_consumer_rest_api import crud, schemas
 

@@ -1,4 +1,6 @@
-from ast import pattern
+# -*- coding: utf-8 -*-
+"""Implementation of the well schema."""
+from datetime import datetime
 from typing import Optional
 
 from pydantic import Field, validator
@@ -8,51 +10,54 @@ from witsml_consumer_rest_api.schemas import Base
 
 class Well(Base):
     field: Optional[str] = Field(
-        exemplo='6507/7-A-42',
+        example='6507/7-A-42',
         description='Name of the field in which the well is located.',
     )
     country: Optional[str] = Field(
-        exemplo='Big Field', description='Country in which well is located.'
+        example='Big Field',
+        description='Country in which well is located.',
     )
     state: Optional[str] = Field(
-        exemplo='TX', description='State or province in which well is located.'
+        example='TX',
+        description='State or province in which well is located.',
     )
     county: Optional[str] = Field(
-        exemplo='Montgomery',
+        example='Montgomery',
         description='County in which the well is located.',
     )
     region: Optional[str] = Field(
-        exemplo='Region Name', description='Geo-political region'
+        example='Region Name', description='Geo-political region.'
     )
     district: Optional[str] = Field(
-        exemplo='District Name', description='Geo-political district name.'
+        example='District Name', description='Geo-political district name.'
     )
     block: Optional[str] = Field(
-        exemplo='Block Name',
+        example='Block Name',
         description='Block name in which well is located.',
     )
     operator: Optional[str] = Field(
-        exemplo='Operating Company', description='Operator company name.'
+        example='Operating Company', description='Operator company name.'
     )
     operatorDiv: Optional[str] = Field(
-        exemplo='Division Name', description='Division of operator company.'
+        example='Division Name',
+        description='Division of operator company.',
     )
     numAPI: Optional[str] = Field(
-        exemplo='123-543-987AZ',
+        example='123-543-987AZ',
         description='American Petroleum Institute well number.',
     )
     statusWell: Optional[str] = Field(
-        exemplo='drilling', description='POSC Well status.'
+        example='drilling', description='POSC Well status.'
     )
     purposeWell: Optional[str] = Field(
-        exemplo='exploration', description='POSC Well purpose.'
+        example='exploration', description='POSC Well purpose.'
     )
-    dTimSpud: Optional[str] = Field(
-        exemplo='2001-05-31T08:15:00.000Z',
+    dTimSpud: Optional[datetime] = Field(
+        example='2001-05-31T08:15:00.000Z',
         description='Date and time at which well was spudded.',
     )
-    dTimPa: Optional[str] = Field(
-        exemplo='2001-07-15T15:30:00.000Z',
+    dTimPa: Optional[datetime] = Field(
+        example='2001-07-15T15:30:00.000Z',
         description='Date and time at which well was plugged and abandoned.',
     )
 
@@ -77,7 +82,7 @@ class Well(Base):
             'working over',
             'unknown',
         ]
-        if not well_status in well_states:
+        if well_status not in well_states:
             raise ValueError(f'statusWell must be in {str(well_states)}!')
 
         return well_status
@@ -111,7 +116,7 @@ class Well(Base):
             'mineral',
             'unknown',
         ]
-        if not purpose_well in purposes_well:
+        if purpose_well not in purposes_well:
             raise ValueError(f'purposeWell must be in {str(purposes_well)}!')
 
         return purpose_well
