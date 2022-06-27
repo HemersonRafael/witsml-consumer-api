@@ -1,5 +1,5 @@
 # WITSML CONSUMER REST API
-This REST API consumes data from a WITSML storage.
+This RESTFull API consumes data from a WITSML storage.
 
 ## Getting started
 
