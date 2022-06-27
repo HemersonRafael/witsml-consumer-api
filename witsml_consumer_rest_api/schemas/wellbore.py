@@ -10,7 +10,8 @@ from witsml_consumer_rest_api.schemas import Base
 
 class Wellbore(Base):
     uidWell: Optional[str] = Field(
-        example='6507/7-A-42', description='Well IDentifier.'
+        example='6507/7-A-42',
+        description='Universally Unique well Identifier.',
     )
     nameWell: Optional[str] = Field(
         example='6507/7-A-42', description='Name Well.'

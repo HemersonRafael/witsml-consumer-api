@@ -10,7 +10,9 @@ class Base(BaseModel):
     returnElements: str = Field(
         default='requested', description='Return Elements'
     )
-    uid: Optional[str] = Field(exempla='w-42', description='IDentifier.')
+    uid: Optional[str] = Field(
+        exempla='w-42', description='Universally unique identifier.'
+    )
     name: Optional[str] = Field(exempla='A-42', description='Name.')
     dTimCreation: Optional[datetime] = Field(
         exempla='2022-04-22T05:47:54.284Z',

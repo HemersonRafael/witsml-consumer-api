@@ -10,10 +10,10 @@ from witsml_consumer_rest_api.schemas import Base
 
 class Log(Base):
     uidWell: Optional[str] = Field(
-        example='w-42', description='Well IDentifier.'
+        example='w-42', description='Universally Unique well Identifier.'
     )
     uidWellbore: Optional[str] = Field(
-        example='w-42-1', description='Uid Wellbore.'
+        example='w-42-1', description='Universally Unique wellbore Identifier'
     )
     nameWell: Optional[str] = Field(example='A-42', description='Name Well.')
     nameWellbore: Optional[str] = Field(
