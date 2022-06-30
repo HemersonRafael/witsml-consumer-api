@@ -3,7 +3,7 @@
 
 from komle.soap_client import StoreClient
 
-from witsml_consumer_rest_api.config import settings
+from witsml_consumer_api.config import settings
 
 storage_client = StoreClient(
     service_url=settings.WITSML_SERVICE_URL,

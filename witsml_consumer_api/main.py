@@ -6,7 +6,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from witsml_consumer_rest_api.routers import logs, wellbores, wells
+from witsml_consumer_api.routers import logs, wellbores, wells
 
 app = FastAPI()
 

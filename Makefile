@@ -25,4 +25,4 @@ export:
 	@poetry export -f requirements.txt --without-hashes  > requirements.txt
 	@poetry export --dev -f  requirements.txt --without-hashes  > requirements-dev.txt
 run:
-	@poetry run uvicorn witsml_consumer_rest_api.main:app --host localhost --port 8080 --reload --log-level debug
+	@poetry run uvicorn witsml_consumer_api.main:app --host localhost --port 8080 --reload --log-level debug

@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "witsml-consumer-rest-api"
+name = "witsml-consumer-api"
 version = "0.1.0"
-description = "This REST API consumes data from a WITSML storage."
+description = "This RESTFull API consumes data from a WITSML storage."
 authors = ["hemersonrafael <rafaelpontes1995@gmail.com>"]
 
 [tool.poetry.dependencies]

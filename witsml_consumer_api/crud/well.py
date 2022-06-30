@@ -8,9 +8,9 @@ from komle.soap_client import StoreClient, StoreException
 from pyxb.exceptions_ import PyXBException
 from requests.exceptions import RequestException
 
-from witsml_consumer_rest_api.connecter import storage_client
-from witsml_consumer_rest_api.crud.base import CRUDBase
-from witsml_consumer_rest_api.exeptions import WitsmlConsumerApiError
+from witsml_consumer_api.connecter import storage_client
+from witsml_consumer_api.crud.base import CRUDBase
+from witsml_consumer_api.exeptions import WitsmlConsumerApiError
 
 
 class CRUDWell(CRUDBase):
@@ -21,14 +21,20 @@ class CRUDWell(CRUDBase):
     ) -> dict:
         query_fields = jsonable_encoder(query_fields, exclude_none=True)
         return_elements = query_fields['returnElements']
+        xml_attribs = query_fields['xmlAttribs']
+        options_in = query_fields['OptionsIn']
         del query_fields['returnElements']
+        del query_fields['xmlAttribs']
+        del query_fields['OptionsIn']
         try:
-            return self.remove_ns1(
+            return self.clean_obj(
                 ku.element_to_dict(
-                    sc.get_wells(
-                        witsml.obj_well(**query_fields),
+                    xml_attribs=xml_attribs,
+                    element=sc.get_wells(
+                        q_well=witsml.obj_well(**query_fields),
                         returnElements=return_elements,
-                    )
+                        OptionsIn=options_in,
+                    ),
                 )
             )
         except PyXBException as err:

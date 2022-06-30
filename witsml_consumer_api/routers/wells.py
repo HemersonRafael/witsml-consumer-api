@@ -4,7 +4,7 @@ from typing import Any
 
 from fastapi import APIRouter
 
-from witsml_consumer_rest_api import crud, schemas
+from witsml_consumer_api import crud, schemas
 
 router = APIRouter()
 

@@ -5,7 +5,7 @@ from typing import Optional
 
 from pydantic import Field, validator
 
-from witsml_consumer_rest_api.schemas import Base
+from witsml_consumer_api.schemas import Base
 
 
 class Log(Base):
