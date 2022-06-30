@@ -28,7 +28,7 @@ class CRUDLog(CRUDBase):
         del query_fields['xmlAttribs']
         del query_fields['OptionsIn']
         try:
-            log_in_sc = self.clean_obj(
+            logs_in_sc = self.clean_obj(
                 ku.element_to_dict(
                     xml_attribs=xml_attribs,
                     element=sc.get_logs(
@@ -41,10 +41,10 @@ class CRUDLog(CRUDBase):
             if (
                 return_elements == 'header-only' or return_elements == 'all'
             ) and xml_attribs == True:
-                if 'log' in log_in_sc['logs']:
-                    if type(log_in_sc['logs']['log']) is list:
+                if 'log' in logs_in_sc['logs']:
+                    if type(logs_in_sc['logs']['log']) is list:
                         logs_p = []
-                        for log in log_in_sc['logs']['log']:
+                        for log in logs_in_sc['logs']['log']:
                             log['startIndex'] = check_key(
                                 check_key(log, 'startIndex'), '#text'
                             )
@@ -55,21 +55,21 @@ class CRUDLog(CRUDBase):
                                 log['logCurveInfo']
                             )
                             logs_p.append(log)
-                        log_in_sc['logs']['log'] = logs_p
-                    elif type(log_in_sc['logs']['log']) is dict:
-                        log_in_sc['startIndex'] = check_key(
-                            check_key(log_in_sc, 'startIndex'), '#text'
+                        logs_in_sc['logs']['log'] = logs_p
+                    elif type(logs_in_sc['logs']['log']) is dict:
+                        logs_in_sc['startIndex'] = check_key(
+                            check_key(logs_in_sc, 'startIndex'), '#text'
                         )
-                        log_in_sc['endIndex'] = check_key(
-                            check_key(log_in_sc, 'endIndex'), '#text'
+                        logs_in_sc['endIndex'] = check_key(
+                            check_key(logs_in_sc, 'endIndex'), '#text'
                         )
-                        log_in_sc['logs']['log'][
+                        logs_in_sc['logs']['log'][
                             'logCurveInfo'
                         ] = parser_log_curve_info(
-                            log_in_sc['logs']['log']['logCurveInfo']
+                            logs_in_sc['logs']['log']['logCurveInfo']
                         )
 
-            return log_in_sc
+            return logs_in_sc
 
         except PyXBException as err:
             raise HTTPException(status_code=422, detail=str(err))
