@@ -17,7 +17,7 @@ This document includes instructions to get the project running in development.
 
 1. Open your terminal and change directory to the project's root:
    ```bash
-   cd witsml_consumer_rest_api
+   cd witsml_consumer_api
    ```
 
 2. Copy the sample environment variables file and edit them to your environment:

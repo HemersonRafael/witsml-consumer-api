@@ -100,7 +100,10 @@ class CRUDWellbore(CRUDBase):
         except PyXBException as err:
             raise HTTPException(status_code=422, detail=str(err))
         except (RequestException, StoreException) as err:
-            raise HTTPException(status_code=502, detail=str(err))
+            raise HTTPException(
+                status_code=502,
+                detail=f'{str(err)} or the query has a larger response than supported.',
+            )
         except Exception as err:
             raise WitsmlConsumerApiError(str(err)) from err
 
