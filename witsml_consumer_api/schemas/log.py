@@ -38,6 +38,9 @@ class Log(Base):
     indexType: Optional[str] = Field(
         example='measured depth', description='Primary index type.'
     )
+    objectGrowing: Optional[bool] = Field(
+        example=True, description='The growing state of the object.'
+    )
     startIndex: Optional[float] = Field(
         example=499,
         description="""
