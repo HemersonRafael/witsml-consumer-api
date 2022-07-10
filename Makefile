@@ -1,4 +1,4 @@
-.PHONY: install update format lint lint-darker migration test security export run
+.PHONY: install update format lint test security export run
 
 install:
 	@poetry install
@@ -7,16 +7,9 @@ update:
 format:
 	@poetry run blue .
 	@poetry run isort .
-#Recommend for pre-commit hook if starting project
 lint:
 	@poetry run blue . --check
 	@poetry run isort . --check
-#Recommend for pre-commit hook if the project has already started
-lint-darker:
-	@poetry run darker . --check
-	@poetry run darker .  --isort
-migration:
-	@poetry run alembic upgrade head
 test:
 	@poetry run pytest -v
 security:
