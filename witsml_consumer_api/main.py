@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from witsml_consumer_api.config import open_api_settings
-from witsml_consumer_api.routers import logs, wellbores, wells
+from witsml_consumer_api.routers import capabilities, logs, wellbores, wells
 
 app = FastAPI(**open_api_settings)
 
@@ -18,6 +18,7 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
+app.include_router(capabilities.router, tags=['capabilities'])
 app.include_router(logs.router, tags=['logs'])
 app.include_router(wells.router, tags=['wells'])
 app.include_router(wellbores.router, tags=['wellbores'])

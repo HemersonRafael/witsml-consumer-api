@@ -9,6 +9,9 @@ from witsml_consumer_api.schemas import Base
 
 
 class Log(Base):
+    returnElements: str = Field(
+        default='id-only', description='Return Elements'
+    )
     uidWell: Optional[str] = Field(
         example='w-42', description='Universally Unique well Identifier.'
     )

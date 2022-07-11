@@ -9,10 +9,24 @@ from pydantic import BaseModel, Field, validator
 class Base(BaseModel):
     xmlAttribs: bool = True
     OptionsIn: str = Field(
-        default='', example='dataVersion=1.4.1.1', description=''
+        default='',
+        example="""
+            1) dataVersion=1.4.1.1
+            2) dataVersion=1.4.1.1;maxReturnNodes=1000
+            3) dataVersion=1.4.1.1;requestLatestValues=100;maxReturnNodes=1000
+            Don't forget to use ";" to separate the different keywords
+        """,
+        description="""
+            An OptionsIn parameter provides a mechanism for a client to pass 
+            configuration information to the server.
+        """,
     )
     returnElements: str = Field(
-        default='requested', description='Return Elements'
+        default='all',
+        description="""Is an OptionsIn Keywords that Indicates which elements and 
+            attributes are requested to be returned in addition to the data 
+            object selection items
+        """,
     )
     uid: Optional[str] = Field(
         example='w-42', description='Universally unique identifier.'

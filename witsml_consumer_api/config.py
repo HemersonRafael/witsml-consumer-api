@@ -16,37 +16,53 @@ class Settings(BaseSettings):
 settings = Settings(_env_file='.env', _env_file_encoding='utf-8')
 
 description: str = """
-This RESTFull API consumes data from a WITSML storage.
+This RESTFul API consumes data from a Wellsite Information Transfer Standard Markup Language (WITSML) 
+server and provides responses in format JSON. Therefore abstracting the complexity of using directly 
+the WITSML.
 
 Supported WITSML Data version: 1.4.1.1
 
 Supported WITSML data objects based on Standards maintained by [Energistics](https://www.energistics.org/witsml-data-standards/):
+
 - Log
 - Well
 - Wellbore
 
-Don't forget to set the environment variables:
-* **WITSML_SERVICE_URL** -> The WITSML storage URL. will try to connect.
-* **WITSML_USERNAME** -> The WITSML username used by [komle-plus](https://github.com/HemersonRafael/komle-plus).
-* **WITSML_PASSWORD** -> The WITSML password to be set on the user above.
+Supported WMLS_GetCap Function
 
-**Attention with Security**
+Purpose: Returns the capServer object that describes the capabilities of the server for one Data Schema
+Version.
 
-Before deploying in production is necessary choice one way among many 
+Therefore it is possible to get more information about the limitations of the WITSML server.
+
+## **Attention with Security**
+
+Before deploying in production is necessary choice one way among many
 ways to handle security, authentication and authorization.
 
 Some possible options:
+
 - [OAuth2](https://oauth.net/2/)
 - [OAuth 1](https://oauth.net/1/)
 - [OpenID Connect](https://openid.net/connect/)
 
-[More](https://github.com/HemersonRafael/witsml-consumer-api)
+[More information for WITSML Developers & Users](https://www.energistics.org/witsml-developers-users/)
+
+[Repository on GitHub](https://github.com/HemersonRafael/witsml-consumer-api)
 """
 
 tags_metadata: list = [
     {
         'name': 'active',
         'description': 'To check if the API is active.',
+    },
+    {
+        'name': 'capabilities',
+        'description': 'Returns the capServer object that describes the capabilities of the server for one Data Schema Version.',
+        'externalDocs': {
+            'description': 'Capabilities external docs',
+            'url': 'https://www.energistics.org/witsml-developers-users/',
+        },
     },
     {
         'name': 'logs',

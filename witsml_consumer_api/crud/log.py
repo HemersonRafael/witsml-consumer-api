@@ -18,7 +18,7 @@ class CRUDLog(CRUDBase):
     def get(
         self,
         sc: StoreClient = storage_client,
-        query_fields: dict = {'returnElements': 'header-only'},
+        query_fields: dict = {'returnElements': 'id-only'},
     ) -> dict:
         query_fields = jsonable_encoder(query_fields, exclude_none=True)
         return_elements = query_fields['returnElements']
