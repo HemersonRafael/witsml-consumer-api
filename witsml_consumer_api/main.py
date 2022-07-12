@@ -8,7 +8,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from witsml_consumer_api.config import open_api_settings
 from witsml_consumer_api.routers import capabilities, logs, wellbores, wells
 
-app = FastAPI(**open_api_settings)
+app = FastAPI(
+    **open_api_settings,
+    servers=[{'url': 'http://localhost:8080/', 'description': 'Locally'}]
+)
 
 app.add_middleware(
     CORSMiddleware,
